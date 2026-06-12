@@ -150,17 +150,20 @@ app.use((err, req, res, next) => {
 });
 
 // ─── Start Server ─────────────────────────────────────────
-const PORT = process.env.PORT || 5000;
+// Only start listening when NOT on Vercel (Vercel handles this itself)
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
-  console.log(`
+  server.listen(PORT, () => {
+    console.log(`
   ╔══════════════════════════════════════════╗
   ║     🍷 SplitBuddy API Server            ║
   ║     Running on port ${PORT}                 ║
   ║     Environment: ${process.env.NODE_ENV || 'development'}          ║
   ╚══════════════════════════════════════════╝
-  `);
-});
+    `);
+  });
+}
 
 // Graceful shutdown
 process.on('SIGTERM', async () => {
@@ -179,4 +182,6 @@ process.on('SIGINT', async () => {
   });
 });
 
-module.exports = { app, server };
+// Export app for Vercel serverless
+module.exports = app;
+
