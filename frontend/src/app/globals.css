@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Shiraz Palette */
+  --color-shiraz-50: #fef2f3;
+  --color-shiraz-100: #fee5e7;
+  --color-shiraz-200: #fbd0d5;
+  --color-shiraz-300: #f8a9b2;
+  --color-shiraz-400: #f47889;
+  --color-shiraz-500: #ea4964;
+  --color-shiraz-600: #d6284d;
+  --color-shiraz-700: #ac1a3d;
+  --color-shiraz-800: #971a3c;
+  --color-shiraz-900: #821939;
+  --color-shiraz-950: #48091a;
+
+  /* Secondary / Earthy Palette */
+  --color-forest: #01472e;
+  --color-sage: #ccd5ae;
+  --color-olive: #e9edc9;
+  --color-cream: #fefae0;
+  --color-moss: #a3b18a;
+
+  /* Typography */
+  --font-anton: var(--font-anton);
+  --font-inter: var(--font-inter);
+
+  /* Borders & Radii */
+  --radius-large: 5rem;
+  --radius-card: 2.5rem;
+
+  /* Custom Shadow */
+  --shadow-deep: 0 25px 50px -12px rgba(1, 71, 46, 0.2);
+
+  /* Custom Animations */
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+    }
+  }
+}
+
+:root {
+  --background: var(--color-shiraz-50);
+  --foreground: var(--color-shiraz-950);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* Noise overlay */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Smooth reveal transition utility */
+.reveal-anim {
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
